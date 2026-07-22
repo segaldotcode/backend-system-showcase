@@ -1,5 +1,6 @@
 import { ThemeToggle } from "@/components/theme-toggle";
 import { LanguageToggle } from "@/components/language-toggle";
+import { RefreshButton } from "@/components/refresh-button";
 import { ProjectCard } from "@/components/ecosystem/project-card";
 import { StatusPanel } from "@/components/ecosystem/status-panel";
 import { ArchitectureDiagram } from "@/components/ecosystem/architecture-diagram";
@@ -28,6 +29,7 @@ export default async function Home({ searchParams }: HomeProps) {
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <LanguageToggle locale={locale} />
+          <RefreshButton />
         </div>
       </header>
 
