@@ -1,0 +1,70 @@
+{
+  "title": "Backend System Showcase",
+  "subtitle": "Six repositories, one backend ecosystem: feature flags, audit logs, payments, an AI assistant and a proactive monitoring agent working together.",
+  "intro": "A payment is created in Payment Tracking, the state change is logged automatically in the Audit Log System, a feature flag controls the active flow, the AI Admin Assistant summarizes the day in plain language, and the eve Audit Agent watches all of it in the background, without being asked.",
+  "projects": {
+    "heading": "The ecosystem",
+    "viewRepo": "View repo",
+    "stackLabel": "Stack",
+    "items": {
+      "featureFlags": {
+        "name": "Feature Flags Dashboard",
+        "role": "Controls application behavior per user context, with a plain-language \"why is this flag ON\" explanation."
+      },
+      "auditLog": {
+        "name": "Audit Log System",
+        "role": "Traces every user action with a timeline UI, replay and suspicious activity detection."
+      },
+      "paymentTracking": {
+        "name": "Payment Tracking System",
+        "role": "Payment lifecycle state machine with refunds and receipt linking."
+      },
+      "aiAdmin": {
+        "name": "AI Admin Assistant",
+        "role": "Natural language queries over the audit logs and payments, backed by real business data."
+      },
+      "branchOrigin": {
+        "name": "Branch Origin Finder",
+        "role": "CLI/web tool that infers a Git branch's likely parent from merge-base, reflog and confidence scoring."
+      },
+      "eveAgent": {
+        "name": "eve Audit Agent",
+        "role": "Proactive agent that watches Supabase events in real time and reports anomalies with a human approval gate."
+      }
+    }
+  },
+  "status": {
+    "heading": "Live status",
+    "description": "Read directly from the shared Supabase instance, the same tables the other four projects write to.",
+    "auditEvents": "Audit events",
+    "payments": "Payments",
+    "users": "Users",
+    "byStatus": "Payments by status",
+    "recentActivity": "Recent activity",
+    "empty": "No data yet. Run the seed scripts in feature-flags-dashboard, audit-log-system and payment-tracking-system first.",
+    "unavailable": "Live status unavailable. Check the Supabase credentials in .env.local.",
+    "paymentStatus": {
+      "pending": "Pending",
+      "processing": "Processing",
+      "success": "Success",
+      "failed": "Failed",
+      "refunded": "Refunded"
+    },
+    "actions": {
+      "LOGIN_ATTEMPT": "Login attempt",
+      "LOGIN_SUCCEEDED": "Login succeeded",
+      "LOGIN_FAILED": "Login failed",
+      "PAYMENT_CREATED": "Payment created",
+      "PAYMENT_PROCESSING": "Payment processing",
+      "PAYMENT_SUCCEEDED": "Payment succeeded",
+      "PAYMENT_FAILED": "Payment failed",
+      "PAYMENT_REFUNDED": "Payment refunded",
+      "FLAG_TOGGLED": "Flag toggled",
+      "USER_UPDATED": "User updated"
+    }
+  },
+  "architecture": {
+    "heading": "Architecture",
+    "description": "No service bindings, no message queue: each module reads and writes the same Supabase instance. Feature Flags, Audit Log, Payment Tracking and AI Admin Assistant share the audit_logs, payments and users tables. This hub only reads them."
+  }
+}
