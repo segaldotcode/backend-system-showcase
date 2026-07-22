@@ -37,7 +37,17 @@ All five talk to a single Supabase project, each owning a different table (`user
 
 ## Screenshots / Demo GIF
 
-Coming soon.
+Light mode:
+
+![Backend System Showcase in light mode](public/assets/screen-light-mode.png)
+
+Dark mode:
+
+![Backend System Showcase in dark mode](public/assets/screen-dark-mode.png)
+
+Toggling theme, language and refreshing the live status:
+
+![Demo of theme, language and refresh toggles](public/assets/demo.gif)
 
 ## How to reuse
 
