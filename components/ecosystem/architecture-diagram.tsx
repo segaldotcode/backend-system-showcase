@@ -38,13 +38,16 @@ export function ArchitectureDiagram({ dict }: { dict: Dictionary }) {
           <ArrowUpDown className="size-4" />
         </div>
 
-        <Node label="Supabase (single project)" sublabel="users, audit_logs, payments, payment_events, receipts, eve_agent_log" />
+        <Node
+          label={dict.architecture.supabaseNode}
+          sublabel="users, audit_logs, payments, payment_events, receipts, eve_agent_log"
+        />
 
         <div className="flex justify-center text-muted-foreground">
           <ArrowDown className="size-4" />
         </div>
 
-        <Node label="Backend System Showcase (this hub, read-only)" />
+        <Node label={dict.architecture.hubNode} />
       </CardContent>
     </Card>
   );
