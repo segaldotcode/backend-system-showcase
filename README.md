@@ -42,8 +42,14 @@ Coming soon.
 
 ## How to reuse
 
-Coming soon.
+1. Clone the repo and install dependencies: `pnpm install`
+2. Add Supabase credentials to `.env.local` (see `.env.example`), pointing at the same project used by feature-flags-dashboard, audit-log-system, payment-tracking-system and ai-admin-assistant, so the live status section has real data to read
+3. Run `pnpm dev`. Without valid credentials or shared data, the live status card falls back to an "unavailable" or "no data yet" message instead of breaking the page
 
 ## Architecture
 
-Coming soon.
+- `lib/projects.ts` lists the six repositories once (URL, stack, whether they share the Supabase instance), consumed by both the project cards and the architecture diagram
+- `lib/supabase/ecosystem.ts` is the only place that talks to Supabase: read-only counts on `audit_logs`, `payments` and `users`, plus the last few audit events, wrapped in a try/catch that returns `null` instead of throwing
+- `components/ecosystem/` holds the three building blocks of the page: `project-card.tsx`, `status-panel.tsx` (stat tiles, payments by status, recent activity) and `architecture-diagram.tsx` (a small dependency-free diagram built from the same `lib/projects.ts` data)
+- `lib/i18n/` mirrors the pattern used across the other five repos: `en.json`/`fr.json` dictionaries plus a translator for audit action codes and payment statuses
+- `app/page.tsx` reads the language from the URL, fetches the ecosystem status server-side, and renders the three sections: the project grid, the live status panel and the architecture diagram
