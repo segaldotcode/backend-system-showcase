@@ -62,6 +62,6 @@
   },
   "architecture": {
     "heading": "Architecture",
-    "description": "Pas de service bindings ni de file de messages : chaque module lit et écrit dans la même instance Supabase. Feature Flags, Audit Log, Payment Tracking et AI Admin Assistant partagent les tables audit_logs, payments et users. Ce hub, lui, se contente de les lire."
+    "description": "Pas de service bindings ni de file de messages : tous les projets de cet écosystème parlent au même projet Supabase, chacun possédant une tranche différente : users (Feature Flags Dashboard), audit_logs (Audit Log System), payments/payment_events/receipts (Payment Tracking System) et eve_agent_log (eve Audit Agent). L'AI Admin Assistant et ce hub ne possèdent aucune table, ils se contentent de tout lire."
   }
 }

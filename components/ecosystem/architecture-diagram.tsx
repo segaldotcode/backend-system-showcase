@@ -3,16 +3,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { projects } from "@/lib/projects";
 import type { Dictionary } from "@/lib/i18n";
 
-function Node({ label, muted = false }: { label: string; muted?: boolean }) {
+function Node({ label, sublabel }: { label: string; sublabel?: string }) {
   return (
-    <div
-      className={
-        muted
-          ? "rounded-lg border border-dashed border-border px-3 py-2 text-center text-xs text-muted-foreground"
-          : "rounded-lg border border-border bg-muted/50 px-3 py-2 text-center text-xs font-medium"
-      }
-    >
-      {label}
+    <div className="flex min-h-16 flex-col items-center justify-center gap-0.5 rounded-lg border border-border bg-muted/50 px-2 py-2 text-center">
+      <span className="text-xs leading-snug font-medium wrap-break-word">{label}</span>
+      {sublabel && (
+        <span className="font-mono text-[0.65rem] leading-snug wrap-break-word text-muted-foreground">
+          {sublabel}
+        </span>
+      )}
     </div>
   );
 }
@@ -25,12 +24,12 @@ export function ArchitectureDiagram({ dict }: { dict: Dictionary }) {
         <p className="text-sm text-muted-foreground">{dict.architecture.description}</p>
       </CardHeader>
       <CardContent className="flex flex-col gap-3">
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
           {projects.map((project) => (
             <Node
               key={project.key}
               label={dict.projects.items[project.key].name}
-              muted={!project.sharesSupabase}
+              sublabel={project.ownedTables.join(", ") || undefined}
             />
           ))}
         </div>
@@ -39,7 +38,7 @@ export function ArchitectureDiagram({ dict }: { dict: Dictionary }) {
           <ArrowUpDown className="size-4" />
         </div>
 
-        <Node label="Supabase: audit_logs, payments, users" />
+        <Node label="Supabase (single project)" sublabel="users, audit_logs, payments, payment_events, receipts, eve_agent_log" />
 
         <div className="flex justify-center text-muted-foreground">
           <ArrowDown className="size-4" />

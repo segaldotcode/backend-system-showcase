@@ -10,7 +10,8 @@ export type Project = {
   url: string;
   liveUrl: string;
   stack: string[];
-  sharesSupabase: boolean;
+  /** Tables this project owns (writes to) in the shared Supabase project. Empty when it only reads. */
+  ownedTables: string[];
 };
 
 export const projects: Project[] = [
@@ -19,34 +20,34 @@ export const projects: Project[] = [
     url: "https://github.com/segaldotcode/feature-flags-dashboard",
     liveUrl: "https://feature-flags-dashboard-six.vercel.app",
     stack: ["Next.js", "Vercel Flags SDK", "Supabase"],
-    sharesSupabase: true,
+    ownedTables: ["users"],
   },
   {
     key: "auditLog",
     url: "https://github.com/segaldotcode/audit-log-system",
     liveUrl: "https://audit-log-system.vercel.app",
     stack: ["Next.js", "Supabase"],
-    sharesSupabase: true,
+    ownedTables: ["audit_logs"],
   },
   {
     key: "paymentTracking",
     url: "https://github.com/segaldotcode/payment-tracking-system",
     liveUrl: "https://payment-tracking-system-olive.vercel.app",
     stack: ["Next.js", "Supabase"],
-    sharesSupabase: true,
+    ownedTables: ["payments", "payment_events", "receipts"],
   },
   {
     key: "aiAdmin",
     url: "https://github.com/segaldotcode/ai-admin-assistant",
     liveUrl: "https://ai-admin-assistant.vercel.app",
     stack: ["Next.js", "Vercel AI Gateway", "Supabase"],
-    sharesSupabase: true,
+    ownedTables: [],
   },
   {
     key: "eveAgent",
     url: "https://github.com/segaldotcode/eve-audit-agent",
     liveUrl: "https://eve-audit-agent.vercel.app",
     stack: ["eve", "Vercel Functions", "Supabase"],
-    sharesSupabase: false,
+    ownedTables: ["eve_agent_log"],
   },
 ];

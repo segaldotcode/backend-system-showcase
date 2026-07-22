@@ -16,7 +16,7 @@ The thread: a payment is created in Payment Tracking, the state change is logged
 | [AI Admin Assistant](https://github.com/segaldotcode/ai-admin-assistant) | Natural language queries over the audit logs and payments, backed by real business data | [Demo](https://ai-admin-assistant.vercel.app) |
 | [eve Audit Agent](https://github.com/segaldotcode/eve-audit-agent) | Proactive agent that watches Supabase events in real time and reports anomalies with a human approval gate | [Demo](https://eve-audit-agent.vercel.app) |
 
-Four of these (Feature Flags, Audit Log, Payment Tracking, AI Admin Assistant) share a single Supabase instance, so a change in one is visible in the others without any custom integration layer.
+All five talk to a single Supabase project, each owning a different table (`users`, `audit_logs`, `payments`/`payment_events`/`receipts`, `eve_agent_log`), except AI Admin Assistant which only reads. A change in one is visible in the others without any custom integration layer.
 
 ## Features
 
@@ -42,12 +42,12 @@ Coming soon.
 ## How to reuse
 
 1. Clone the repo and install dependencies: `pnpm install`
-2. Add Supabase credentials to `.env.local` (see `.env.example`), pointing at the same project used by feature-flags-dashboard, audit-log-system, payment-tracking-system and ai-admin-assistant, so the live status section has real data to read
+2. Add Supabase credentials to `.env.local` (see `.env.example`), pointing at the same project used by feature-flags-dashboard, audit-log-system, payment-tracking-system, ai-admin-assistant and eve-audit-agent, so the live status section has real data to read
 3. Run `pnpm dev`. Without valid credentials or shared data, the live status card falls back to an "unavailable" or "no data yet" message instead of breaking the page
 
 ## Architecture
 
-- `lib/projects.ts` lists the five repositories once (repo URL, live demo URL, stack, whether they share the Supabase instance), consumed by both the project cards and the architecture diagram
+- `lib/projects.ts` lists the five repositories once (repo URL, live demo URL, stack, which Supabase table(s) it owns), consumed by both the project cards and the architecture diagram
 - `lib/supabase/ecosystem.ts` is the only place that talks to Supabase: read-only counts on `audit_logs`, `payments` and `users`, plus the last few audit events, wrapped in a try/catch that returns `null` instead of throwing
 - `components/ecosystem/` holds the three building blocks of the page: `project-card.tsx`, `status-panel.tsx` (stat tiles, payments by status, recent activity) and `architecture-diagram.tsx` (a small dependency-free diagram built from the same `lib/projects.ts` data)
 - `lib/i18n/` mirrors the pattern used across the other five repos: `en.json`/`fr.json` dictionaries plus a translator for audit action codes and payment statuses
