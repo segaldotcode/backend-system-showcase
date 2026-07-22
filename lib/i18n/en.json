@@ -1,7 +1,7 @@
 {
   "title": "Backend System Showcase",
   "subtitle": "Five repositories, one backend ecosystem: feature flags, audit logs, payments, an AI assistant and a proactive monitoring agent working together.",
-  "intro": "A payment is created in Payment Tracking, the state change is logged automatically in the Audit Log System, a feature flag controls the active flow, the AI Admin Assistant summarizes the day in plain language, and the eve Audit Agent watches all of it in the background, without being asked.",
+  "intro": "A payment is created in Payment Tracking, the state change is logged automatically in the Audit Log System, the AI Admin Assistant summarizes the day in plain language, and the eve Audit Agent watches all of it in the background, without being asked. Feature Flags Dashboard plays a more independent role: it controls its own app's behavior per user context, and a flag toggle is one of the action types the shared audit trail can record.",
   "projects": {
     "heading": "The ecosystem",
     "viewRepo": "View repo",

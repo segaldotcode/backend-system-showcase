@@ -4,7 +4,7 @@
 
 Five repositories, each solving one real backend problem on its own, are more convincing together than apart. This repo is the hub: it ties feature flags, audit logging, payment tracking, an AI admin assistant and a proactive monitoring agent into one story, and shows the flow that runs across all of them.
 
-The thread: a payment is created in Payment Tracking, the state change is logged automatically in the Audit Log System, a feature flag controls which flow is active, the AI Admin Assistant summarizes the day's activity in plain language, and the eve Audit Agent watches all of it in the background, without being asked.
+The thread: a payment is created in Payment Tracking, the state change is logged automatically in the Audit Log System, the AI Admin Assistant summarizes the day's activity in plain language, and the eve Audit Agent watches all of it in the background, without being asked. Feature Flags Dashboard plays a more independent role: it controls its own app's behavior per user context, and a flag toggle is one of the action types the shared audit trail can record. There's no live wiring between it and the other four apps, since each is a separate Vercel deployment.
 
 ## The ecosystem
 
@@ -21,7 +21,7 @@ All five talk to a single Supabase project, each owning a different table (`user
 ## Features
 
 - Ecosystem overview with a card per project, its role, its stack, a link to its live demo and a link to its repo
-- Live status pulled from the shared Supabase instance: recent audit events, payment activity, active flags, read directly from the same tables the other projects write to
+- Live status pulled from the shared Supabase instance: audit event and payment counts, payments by status, recent activity, read directly from the same tables the other projects write to
 - A simple architecture diagram showing how the five projects connect through Supabase
 - Light/dark theme toggle (with interaction sound)
 - French/English language toggle

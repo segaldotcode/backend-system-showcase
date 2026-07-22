@@ -29,7 +29,7 @@ export function ProjectCard({ project, dict }: { project: Project; dict: Diction
               rel="noopener noreferrer"
               data-cuelume-hover
               data-cuelume-press
-              className="inline-flex w-fit items-center gap-1 text-sm font-medium text-foreground underline-offset-4 hover:underline"
+              className="inline-flex w-fit items-center gap-1 text-sm font-medium text-foreground underline-offset-4 transition-colors hover:text-blue-600 hover:underline dark:hover:text-blue-400"
             >
               {dict.projects.viewLive}
               <Globe className="size-4" />
@@ -40,7 +40,7 @@ export function ProjectCard({ project, dict }: { project: Project; dict: Diction
               rel="noopener noreferrer"
               data-cuelume-hover
               data-cuelume-press
-              className="inline-flex w-fit items-center gap-1 text-sm text-muted-foreground underline-offset-4 hover:underline"
+              className="inline-flex w-fit items-center gap-1 text-sm text-muted-foreground underline-offset-4 transition-colors hover:text-blue-600 hover:underline dark:hover:text-blue-400"
             >
               {dict.projects.viewRepo}
               <ArrowUpRight className="size-4" />

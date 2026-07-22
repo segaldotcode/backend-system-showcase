@@ -1,7 +1,7 @@
 {
   "title": "Backend System Showcase",
   "subtitle": "Cinq dépôts, un seul écosystème backend : feature flags, audit logs, paiements, un assistant IA et un agent de surveillance proactif qui fonctionnent ensemble.",
-  "intro": "Un paiement est créé dans Payment Tracking, le changement d'état est automatiquement enregistré dans l'Audit Log System, un feature flag contrôle le flow actif, l'AI Admin Assistant résume la journée en langage naturel, et l'eve Audit Agent surveille tout ça en arrière-plan, sans qu'on le lui demande.",
+  "intro": "Un paiement est créé dans Payment Tracking, le changement d'état est automatiquement enregistré dans l'Audit Log System, l'AI Admin Assistant résume la journée en langage naturel, et l'eve Audit Agent surveille tout ça en arrière-plan, sans qu'on le lui demande. Feature Flags Dashboard joue un rôle plus indépendant : il contrôle le comportement de sa propre application selon le contexte utilisateur, et un changement de flag est un des types d'action que le journal d'audit partagé sait enregistrer.",
   "projects": {
     "heading": "L'écosystème",
     "viewRepo": "Voir le dépôt",
