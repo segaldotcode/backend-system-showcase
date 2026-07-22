@@ -18,9 +18,6 @@ function Node({ label, muted = false }: { label: string; muted?: boolean }) {
 }
 
 export function ArchitectureDiagram({ dict }: { dict: Dictionary }) {
-  const sharedProjects = projects.filter((project) => project.sharesSupabase);
-  const standaloneProjects = projects.filter((project) => !project.sharesSupabase);
-
   return (
     <Card>
       <CardHeader>
@@ -28,9 +25,13 @@ export function ArchitectureDiagram({ dict }: { dict: Dictionary }) {
         <p className="text-sm text-muted-foreground">{dict.architecture.description}</p>
       </CardHeader>
       <CardContent className="flex flex-col gap-3">
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-          {sharedProjects.map((project) => (
-            <Node key={project.key} label={dict.projects.items[project.key].name} />
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
+          {projects.map((project) => (
+            <Node
+              key={project.key}
+              label={dict.projects.items[project.key].name}
+              muted={!project.sharesSupabase}
+            />
           ))}
         </div>
 
@@ -45,10 +46,6 @@ export function ArchitectureDiagram({ dict }: { dict: Dictionary }) {
         </div>
 
         <Node label="Backend System Showcase (this hub, read-only)" />
-
-        <p className="mt-2 text-xs text-muted-foreground">
-          {standaloneProjects.map((project) => dict.projects.items[project.key].name).join(" · ")}
-        </p>
       </CardContent>
     </Card>
   );

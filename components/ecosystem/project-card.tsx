@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Globe } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { Project } from "@/lib/projects";
@@ -22,17 +22,30 @@ export function ProjectCard({ project, dict }: { project: Project; dict: Diction
               </Badge>
             ))}
           </div>
-          <a
-            href={project.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-cuelume-hover
-            data-cuelume-press
-            className="inline-flex w-fit items-center gap-1 text-sm font-medium text-foreground underline-offset-4 hover:underline"
-          >
-            {dict.projects.viewRepo}
-            <ArrowUpRight className="size-4" />
-          </a>
+          <div className="flex flex-wrap items-center gap-4">
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cuelume-hover
+              data-cuelume-press
+              className="inline-flex w-fit items-center gap-1 text-sm font-medium text-foreground underline-offset-4 hover:underline"
+            >
+              {dict.projects.viewLive}
+              <Globe className="size-4" />
+            </a>
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cuelume-hover
+              data-cuelume-press
+              className="inline-flex w-fit items-center gap-1 text-sm text-muted-foreground underline-offset-4 hover:underline"
+            >
+              {dict.projects.viewRepo}
+              <ArrowUpRight className="size-4" />
+            </a>
+          </div>
         </div>
       </CardContent>
     </Card>

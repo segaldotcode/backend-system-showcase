@@ -2,28 +2,27 @@
 
 ## Why this exists
 
-Six repositories, each solving one real backend problem on its own, are more convincing together than apart. This repo is the hub: it ties feature flags, audit logging, payment tracking, an AI admin assistant and a proactive monitoring agent into one story, and shows the flow that runs across all of them.
+Five repositories, each solving one real backend problem on its own, are more convincing together than apart. This repo is the hub: it ties feature flags, audit logging, payment tracking, an AI admin assistant and a proactive monitoring agent into one story, and shows the flow that runs across all of them.
 
 The thread: a payment is created in Payment Tracking, the state change is logged automatically in the Audit Log System, a feature flag controls which flow is active, the AI Admin Assistant summarizes the day's activity in plain language, and the eve Audit Agent watches all of it in the background, without being asked.
 
 ## The ecosystem
 
-| Project | Role |
-| --- | --- |
-| [Feature Flags Dashboard](https://github.com/segaldotcode/feature-flags-dashboard) | Controls application behavior per user context, with a plain-language "why is this flag ON" explanation |
-| [Audit Log System](https://github.com/segaldotcode/audit-log-system) | Traces every user action with a timeline UI, replay and suspicious activity detection |
-| [Payment Tracking System](https://github.com/segaldotcode/payment-tracking-system) | Payment lifecycle state machine with refunds and receipt linking |
-| [AI Admin Assistant](https://github.com/segaldotcode/ai-admin-assistant) | Natural language queries over the audit logs and payments, backed by real business data |
-| [Branch Origin Finder](https://github.com/segaldotcode/branch-origin-finder) | CLI/web tool that infers a Git branch's likely parent from merge-base, reflog and confidence scoring |
-| [eve Audit Agent](https://github.com/segaldotcode/eve-audit-agent) | Proactive agent that watches Supabase events in real time and reports anomalies with a human approval gate |
+| Project | Role | Live |
+| --- | --- | --- |
+| [Feature Flags Dashboard](https://github.com/segaldotcode/feature-flags-dashboard) | Controls application behavior per user context, with a plain-language "why is this flag ON" explanation | [Demo](https://feature-flags-dashboard-six.vercel.app) |
+| [Audit Log System](https://github.com/segaldotcode/audit-log-system) | Traces every user action with a timeline UI, replay and suspicious activity detection | [Demo](https://audit-log-system.vercel.app) |
+| [Payment Tracking System](https://github.com/segaldotcode/payment-tracking-system) | Payment lifecycle state machine with refunds and receipt linking | [Demo](https://payment-tracking-system-olive.vercel.app) |
+| [AI Admin Assistant](https://github.com/segaldotcode/ai-admin-assistant) | Natural language queries over the audit logs and payments, backed by real business data | [Demo](https://ai-admin-assistant.vercel.app) |
+| [eve Audit Agent](https://github.com/segaldotcode/eve-audit-agent) | Proactive agent that watches Supabase events in real time and reports anomalies with a human approval gate | [Demo](https://eve-audit-agent.vercel.app) |
 
 Four of these (Feature Flags, Audit Log, Payment Tracking, AI Admin Assistant) share a single Supabase instance, so a change in one is visible in the others without any custom integration layer.
 
 ## Features
 
-- Ecosystem overview with a card per project, its role, its stack and a link to its repo
+- Ecosystem overview with a card per project, its role, its stack, a link to its live demo and a link to its repo
 - Live status pulled from the shared Supabase instance: recent audit events, payment activity, active flags, read directly from the same tables the other projects write to
-- A simple architecture diagram showing how the six projects connect through Supabase
+- A simple architecture diagram showing how the five projects connect through Supabase
 - Light/dark theme toggle (with interaction sound)
 - French/English language toggle
 
@@ -48,7 +47,7 @@ Coming soon.
 
 ## Architecture
 
-- `lib/projects.ts` lists the six repositories once (URL, stack, whether they share the Supabase instance), consumed by both the project cards and the architecture diagram
+- `lib/projects.ts` lists the five repositories once (repo URL, live demo URL, stack, whether they share the Supabase instance), consumed by both the project cards and the architecture diagram
 - `lib/supabase/ecosystem.ts` is the only place that talks to Supabase: read-only counts on `audit_logs`, `payments` and `users`, plus the last few audit events, wrapped in a try/catch that returns `null` instead of throwing
 - `components/ecosystem/` holds the three building blocks of the page: `project-card.tsx`, `status-panel.tsx` (stat tiles, payments by status, recent activity) and `architecture-diagram.tsx` (a small dependency-free diagram built from the same `lib/projects.ts` data)
 - `lib/i18n/` mirrors the pattern used across the other five repos: `en.json`/`fr.json` dictionaries plus a translator for audit action codes and payment statuses

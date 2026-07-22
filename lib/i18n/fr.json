@@ -1,10 +1,11 @@
 {
   "title": "Backend System Showcase",
-  "subtitle": "Six dépôts, un seul écosystème backend : feature flags, audit logs, paiements, un assistant IA et un agent de surveillance proactif qui fonctionnent ensemble.",
+  "subtitle": "Cinq dépôts, un seul écosystème backend : feature flags, audit logs, paiements, un assistant IA et un agent de surveillance proactif qui fonctionnent ensemble.",
   "intro": "Un paiement est créé dans Payment Tracking, le changement d'état est automatiquement enregistré dans l'Audit Log System, un feature flag contrôle le flow actif, l'AI Admin Assistant résume la journée en langage naturel, et l'eve Audit Agent surveille tout ça en arrière-plan, sans qu'on le lui demande.",
   "projects": {
     "heading": "L'écosystème",
     "viewRepo": "Voir le dépôt",
+    "viewLive": "Démo en direct",
     "stackLabel": "Stack",
     "items": {
       "featureFlags": {
@@ -22,10 +23,6 @@
       "aiAdmin": {
         "name": "AI Admin Assistant",
         "role": "Requêtes en langage naturel sur les audit logs et les paiements, branchées sur les vraies données métier."
-      },
-      "branchOrigin": {
-        "name": "Branch Origin Finder",
-        "role": "Outil CLI/web qui infère la branche parente la plus probable d'une branche Git à partir du merge-base, du reflog et d'un score de confiance."
       },
       "eveAgent": {
         "name": "eve Audit Agent",
